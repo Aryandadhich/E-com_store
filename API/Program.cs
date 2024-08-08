@@ -40,3 +40,7 @@ catch (Exception ex)
 
 
 app.Run();
+
+//dotnet watch run 
+
+// this is the command to run the api application 
