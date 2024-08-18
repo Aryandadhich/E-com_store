@@ -2,14 +2,26 @@ using API.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-// Add services to the container.
 
+// Add services to the container.
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<StoreContext>(opt => {
+builder.Services.AddDbContext<StoreContext>(opt =>
+{
     opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+// Define and add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        policy =>
+        {
+            policy.AllowAnyHeader()
+                  .AllowAnyMethod()
+                  .WithOrigins("http://localhost:5000"); // Adjust if frontend URL changes
+        });
 });
 
 var app = builder.Build();
@@ -19,7 +31,11 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-} 
+}
+
+// Apply CORS policy before other middlewares
+app.UseCors("AllowSpecificOrigin");
+
 app.UseAuthorization();
 
 app.MapControllers();
@@ -30,17 +46,12 @@ var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 
 try
 {
-    context.Database.Migrate(); //if we do not have data base then it will create database or if we have then no migration will apply nothing happens.
+    context.Database.Migrate(); // Apply migrations if needed
     Dbinitializer.Initialize(context);
 }
 catch (Exception ex)
 {
-   logger.LogError(ex, "A problwem occur during migration");
+    logger.LogError(ex, "A problem occurred during migration");
 }
 
-
 app.Run();
-
-//dotnet watch run 
-
-// this is the command to run the api application 
