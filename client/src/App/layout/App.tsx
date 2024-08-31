@@ -10,7 +10,7 @@ function App(){
  //run every time our component renders 
  //we are going to stuck in endless loop if we dot put dependency here in useeffect
  useEffect(() => {
-   fetch('http://localhost:5000/api/products')
+    fetch('http://localhost:5000/api/products')
    .then(response => response.json())
    .then(data => setProducts(data))
  }, [])
