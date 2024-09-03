@@ -1,44 +1,56 @@
-import { useState , useEffect} from "react";
+import { useState, useEffect } from "react";
+import Catalog from "../../features/catalog/catalog";
+import { Product } from "../Models/product";
+import { Typography } from "@mui/material";
+// Assuming this is where the Product interface is defined
 
-function App(){
-  const [products, setProducts] = useState([
-    {name: 'product1' , price:100},
-    {name: 'product2' , price:200}
- ]);
+function App() {
+  const [products, setProducts] = useState<Product[]>([
+    {
+      id: 101,
+      name: "product 1",
+      price: 100,
+      brand: "Brand A",
+      description: "Description of product 1",
+      pictureUrl: "http://example.com/product1.jpg",
+      type: "Type A",
+    },
+    {
+      id: 102,
+      name: "product 2",
+      price: 200,
+      brand: "Brand B",
+      description: "Description of product 2",
+      pictureUrl: "http://example.com/product2.jpg",
+      type: "Type B",
+    },
+  ]);
 
- //if we dont use dependency then use effect going to 
- //run every time our component renders 
- //we are going to stuck in endless loop if we dot put dependency here in useeffect
- useEffect(() => {
-    fetch('http://localhost:5000/api/products')
-   .then(response => response.json())
-   .then(data => setProducts(data))
- }, [])
- 
- 
- //...products is spread operator we are taking 2 item in this array 
- // and spreding them across
- function addProduct(){
-  setProducts(prevState => [...prevState, 
-    { id: prevState.length + 101,
-      name: 'product'+ (prevState.length + 1),
-     price : (prevState.length*100)+100,
-     brand : 'some brand',
-     description : 'some information',
-     pictureUrl : 'http://pucsum.photos/200'
-    }])
+  useEffect(() => {
+    fetch("http://localhost:5000/api/products")
+      .then((response) => response.json())
+      .then((data) => setProducts(data));
+  }, []);
 
-    }
+  function addProduct() {
+    setProducts((prevState) => [
+      ...prevState,
+      {
+        id: prevState.length + 101,
+        name: "product" + (prevState.length + 1),
+        price: prevState.length * 100 + 100,
+        brand: "some brand",
+        description: "some information",
+        pictureUrl: "http://pucsum.photos/200",
+        type: "some type",
+      },
+    ]);
+  }
+
   return (
-      <div>
-        <h1>Re-store</h1>
-        <ul>
-           {products.map((item,index) => (
-            <li key={index}>
-            {item.name} - {item.price}</li>
-          ))}
-        </ul>
-        <button onClick={addProduct}>Add product</button>
+    <div>
+      <Typography variant="h1">Re-store</Typography>
+      <Catalog products={products} addProduct={addProduct} />
     </div>
   );
 }
