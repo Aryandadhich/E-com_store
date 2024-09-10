@@ -20,7 +20,7 @@ builder.Services.AddCors(options =>
         {
             policy.AllowAnyHeader()
                   .AllowAnyMethod()
-                  .WithOrigins("http://localhost:5000"); // Adjust if frontend URL changes
+                  .WithOrigins("http://localhost:5001"); // Adjust if frontend URL changes
         });
 });
 
