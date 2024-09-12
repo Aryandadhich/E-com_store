@@ -6,9 +6,9 @@ interface Props{
 }
 export default function productcard({product}:Props) {
     return (
-        <Card sx={{ maxWidth: 330 }}>
+        <Card>
         <CardMedia
-          sx={{ height: 165 }}
+          sx={{ height: 180 }}
           image="http://picsum.photos/200"
           title="green iguana"
         />
