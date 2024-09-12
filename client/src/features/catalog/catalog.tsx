@@ -1,6 +1,6 @@
 import { Product } from "../../App/Models/product";
 import { Button } from "@mui/material";
-import ProductList from "./productList";
+import ProductList from "./ProductList";
 
 interface Props{
     products: Product[];

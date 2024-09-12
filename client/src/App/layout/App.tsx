@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import Catalog from "../../features/catalog/catalog";
 import { Product } from "../Models/product";
-import { Typography } from "@mui/material";
+import { Container, CssBaseline, Typography } from "@mui/material";
+import Header from "./Header";
 // Assuming this is where the Product interface is defined
 
 function App() {
@@ -48,10 +49,14 @@ function App() {
   }
 
   return (
-    <div>
-      <Typography variant="h1">Re-store</Typography>
+    <>
+    <CssBaseline/>
+      <Header/>
+      <Container >
       <Catalog products={products} addProduct={addProduct} />
-    </div>
+      </Container>
+      
+    </>
   );
 }
 

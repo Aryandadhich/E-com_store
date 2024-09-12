@@ -4,7 +4,7 @@ export default function Header(){
     return (
          <AppBar position="static">
            <Toolbar>
-            <Typography variant="h6">Re-store</Typography>
+            <Typography variant="h6">RE-STORE</Typography>
            </Toolbar>
          </AppBar>
     )
