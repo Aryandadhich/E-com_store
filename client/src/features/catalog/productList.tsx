@@ -1,9 +1,10 @@
-import { Avatar, Grid, List, ListItem, ListItemAvatar, ListItemText } from "@mui/material";
+import { Grid } from "@mui/material";
 import { Product } from "../../App/Models/product";
 import ProductCard from "./ProductCard";
 
 interface Props{
     products: Product[];
+    darkMode: boolean;
 }
 
 export default function productList({products}: Props){
@@ -11,7 +12,7 @@ export default function productList({products}: Props){
         <Grid container spacing={4}>
         {products.map(product => (
             <Grid item xs={3}>
-             <ProductCard key = {product.id} product={product}/>
+             <ProductCard key={product.id} product={product} darkMode={false}/>
             </Grid>
             
         ))}

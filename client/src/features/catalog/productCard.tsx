@@ -3,6 +3,7 @@ import { Product } from "../../App/Models/product";
 
 interface Props{
     product : Product;
+    darkMode : boolean;
 }
 export default function productcard({product}:Props) {
     return (
@@ -15,11 +16,11 @@ export default function productcard({product}:Props) {
                }
                 title={product.name}
                titleTypographyProps={{
-                sx:{fontWeight : "bold", color:'primary.main' }
+                sx:{fontWeight : "bold", color:'primary.' }
                }}
                />
         <CardMedia
-          sx={{ height: 140, backgroundSize: 'contain'}}
+          sx={{ height: 140, backgroundSize: 'contain', bgcolor: "primary.light"}}
           image={product.pictureUrl}
           title={product.name}
         />
