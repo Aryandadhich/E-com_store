@@ -1,7 +1,7 @@
-import Catalog from "../../features/catalog/catalog";
 import { Container, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import Header from "./Header";
 import { useState } from "react";
+import { Outlet } from "react-router-dom";
 // Assuming this is where the Product interface is defined
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
     <CssBaseline/>
       <Header darkmode={darkMode} handleThemeChange={handleThemeChange}/>
       <Container >
-      <Catalog darkMode={darkMode} />
+      <Outlet/>
       </Container>
       
     </ThemeProvider>
