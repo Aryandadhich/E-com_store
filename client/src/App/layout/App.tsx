@@ -18,7 +18,7 @@ function App() {
    })
 
    function handleThemeChange() {
-         setDarkMode(!darkMode);
+         setDarkMode(!darkMode); 
    }
 
   return (
