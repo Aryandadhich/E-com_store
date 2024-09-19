@@ -1,5 +1,5 @@
-import { ShoppingBag, ShoppingCart } from "@mui/icons-material";
-import { List, AppBar, ListItem, Switch, Toolbar, Typography, Button, IconButton, Badge, colors, typographyClasses, Box } from "@mui/material";
+import { ShoppingCart } from "@mui/icons-material";
+import { List, AppBar, Switch, Toolbar, Typography, Button, IconButton, Badge, Box } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
 const midLinks = [
