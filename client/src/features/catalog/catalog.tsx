@@ -1,3 +1,4 @@
+import agent from "../../App/api/agent";
 import { Product } from "../../App/Models/product";
 import ProductList from "./ProductList";
 import { useState, useEffect } from "react";
@@ -11,9 +12,7 @@ interface Props {
       ]);
     
       useEffect(() => {
-        fetch("http://localhost:5000/api/products")
-          .then((response) => response.json())
-          .then((data) => setProducts(data));
+        agent.Catalog.list().then(products => setProducts(products))
       }, []);
     
     return (
