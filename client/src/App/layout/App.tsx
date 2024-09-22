@@ -2,6 +2,8 @@ import { Container, createTheme, CssBaseline, ThemeProvider } from "@mui/materia
 import Header from "./Header";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 // Assuming this is where the Product interface is defined
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <ToastContainer position="bottom-right" hideProgressBar theme = "colored"/>
     <CssBaseline/>
       <Header darkmode={darkMode} handleThemeChange={handleThemeChange}/>
       <Container >
