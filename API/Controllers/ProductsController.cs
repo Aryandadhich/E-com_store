@@ -22,7 +22,11 @@ namespace API.Controllers
 
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-           return await Context.Products.FindAsync(id);
+           var Product = await Context.Products.FindAsync(id);
+
+           if(Product == null) return NotFound();
+
+           return Product;
         }
         
     }

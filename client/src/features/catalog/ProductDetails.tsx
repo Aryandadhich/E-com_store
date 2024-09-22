@@ -1,5 +1,4 @@
-import { Divider, Grid, Typography, CircularProgress, Box, Grow, Button, TableContainer, Table, TableRow, TableCell } from "@mui/material";
-import axios from "axios";
+import { Divider, Grid, Typography, CircularProgress, Box, Grow, TableContainer, Table, TableRow, TableCell } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Product } from "../../App/Models/product";
