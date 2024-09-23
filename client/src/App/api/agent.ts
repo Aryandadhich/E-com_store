@@ -34,8 +34,8 @@ axios.interceptors.response.use(
         break;
     }
     return Promise.reject(error.response);
-  }
-);
+})
+
 const requests = {
   get: (url: string, params?: URLSearchParams) => axios.get(url, { params }).then(responseBody),
   post: (url: string, body: object) => axios.post(url, body).then(responseBody),
