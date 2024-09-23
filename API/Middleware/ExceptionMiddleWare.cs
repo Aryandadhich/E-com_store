@@ -10,14 +10,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Middleware
 {
-    public class ExceptionMiddleWare
+    public class ExceptionMiddleware
     {
         readonly RequestDelegate _next;
 
-        readonly ILogger<ExceptionMiddleWare> _logger;
+        readonly ILogger<ExceptionMiddleware> _logger;
         
         private readonly IHostEnvironment _env;
-        public ExceptionMiddleWare(RequestDelegate next,ILogger<ExceptionMiddleWare>  logger, IHostEnvironment env)
+        public ExceptionMiddleware(RequestDelegate next,ILogger<ExceptionMiddleware>  logger, IHostEnvironment env)
         {
                 _env = env;
                 _next = next;
@@ -31,7 +31,7 @@ namespace API.Middleware
             }
             catch(Exception ex)
             {
-                _logger.LogError(ex,ex.Message);
+                _logger.LogError(ex, ex.Message);
                 context.Response.ContentType = "application/json";
                 context.Response.StatusCode = 500;
 

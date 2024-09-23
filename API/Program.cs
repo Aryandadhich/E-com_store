@@ -29,7 +29,7 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-app.UseMiddleware<ExceptionMiddleWare>();
+app.UseMiddleware<ExceptionMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {

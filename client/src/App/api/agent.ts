@@ -5,9 +5,8 @@ axios.defaults.baseURL = 'http://localhost:5000/api/';
 
 const responseBody = (response: AxiosResponse) => response.data;
 
-axios.interceptors.response.use(
-  async (res) => {
-    return res;
+axios.interceptors.response.use(async response => {
+    return response
   },
   (error: AxiosError) => {
     const { data, status } = error.response as AxiosResponse;
@@ -27,6 +26,9 @@ axios.interceptors.response.use(
       case 401:
         toast.error(data.title);
         break;
+      case 404:
+        toast.error(data.title)
+        break;
       case 500:
         toast.error(data.title);
         break;
@@ -37,7 +39,7 @@ axios.interceptors.response.use(
 })
 
 const requests = {
-  get: (url: string, params?: URLSearchParams) => axios.get(url, { params }).then(responseBody),
+  get: (url: string) => axios.get(url).then(responseBody),
   post: (url: string, body: object) => axios.post(url, body).then(responseBody),
   put: (url: string, body: object) => axios.put(url, body).then(responseBody),
   delete: (url: string) => axios.delete(url).then(responseBody),
