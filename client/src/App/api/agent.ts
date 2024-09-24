@@ -1,5 +1,11 @@
+//"I implemented error handling using Axios interceptors in the frontend and proper API response management in the backend. 
+//For example, in the frontend, I used toast notifications to inform users about errors like 400 (bad requests due to invalid input), 401 (when the user is unauthorized), and 500 (server issues). 
+//The interceptors would catch errors globally and provide users with clear feedback.
+// On the backend, I ensured that the API returned appropriate HTTP status codes with meaningful error messages, like detailed validation errors in case of form submission issues."
+
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
+import { router } from "../Router/Routes";
 
 axios.defaults.baseURL = 'http://localhost:5000/api/';
 
@@ -30,7 +36,7 @@ axios.interceptors.response.use(async response => {
         toast.error(data.title)
         break;
       case 500:
-        toast.error(data.title);
+        router.navigate('/server-error',{state: {error: data}});
         break;
       default:
         break;
