@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Product } from "../../App/Models/product";
 import agent from "../../App/api/agent";
+import NotFound from "../../errors/NotFound";
 
 export default function ProductDetails() {
   const { id } = useParams<{ id: string }>();
@@ -23,7 +24,7 @@ export default function ProductDetails() {
       </Box>
     );
 
-  if (!product) return <h3>Product not found</h3>;
+  if (!product) return <NotFound/>;
 
   return (
     <Grow in={!loading} timeout={600}>
