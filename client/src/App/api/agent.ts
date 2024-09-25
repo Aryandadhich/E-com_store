@@ -7,7 +7,7 @@ import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { router } from "../Router/Routes";
 
-const sleep = () => new Promise(resolve => setTimeout(resolve, 1000));
+const sleep = () => new Promise(resolve => setTimeout(resolve, 300));
 
 axios.defaults.baseURL = 'http://localhost:5000/api/';
 
