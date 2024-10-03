@@ -504,3 +504,6 @@ node_modules/react-toastify/scss/animations/_slide.scss
 node_modules/react-toastify/scss/animations/_spin.scss
 node_modules/react-toastify/scss/animations/_zoom.scss
 API/API.csproj
+API/obj/Debug/net7.0/API.assets.cache
+API/obj/Debug/net7.0/API.GeneratedMSBuildEditorConfig.editorconfig
+API/obj/Debug/net7.0/API.assets.cache
