@@ -1,38 +1,38 @@
 import { ShoppingCart } from "@mui/icons-material";
-import { List, AppBar, Switch, Toolbar, Typography, Button, IconButton, Badge, Box } from "@mui/material";
+import { List, AppBar, Toolbar, Typography, Button, IconButton, Badge, Box } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import UseSwitchesCustom from "../UI/CustomBtn"; // Ensure this path is correct
 
 const midLinks = [
   { title: 'catalog', path: '/catalog' },
   { title: 'about', path: '/about' },
   { title: 'contact', path: '/contact' },
-]
+];
 
 const rightLinks = [
   { title: 'login', path: '/login' },
   { title: 'register', path: '/register' },
-]
-
+];
 
 interface Props {
   darkmode: boolean;
-  handleThemeChange: () => void;
+  handleThemeChange: (checked: boolean) => void; // Update this to accept the checked value
 }
 
 const navStyle = {
   color: 'inherit',
   textDecoration: 'none',
   typography: 'h6',
-  transition: 'color 0.3s ease, transform 0.3s ease', // Smooth transition
+  transition: 'color 0.3s ease, transform 0.3s ease',
   '&:hover': {
-    color: 'grey.300', // Light grey on hover
-    transform: 'scale(1.05)', // Slight scale effect on hover
+    color: 'grey.300',
+    transform: 'scale(1.05)',
     textDecoration: 'underline',
   },
   '&:active': {
-    color: 'grey.500', // Darker grey when active
+    color: 'grey.500',
   },
-}
+};
 
 export default function Header({ darkmode, handleThemeChange }: Props) {
   return (
@@ -40,23 +40,17 @@ export default function Header({ darkmode, handleThemeChange }: Props) {
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
 
         <Box display='flex' alignItems='center'>
-          <Typography variant="h6" component={NavLink}
-            to='/'
-            sx={navStyle}
-          >
+          <Typography variant="h6" component={NavLink} to='/' sx={navStyle}>
             RE-STORE
           </Typography>
 
-          <Switch checked={darkmode} onChange={handleThemeChange} />
+          {/* Use the custom switch here */}
+          <UseSwitchesCustom checked={darkmode} onChange={handleThemeChange} />
         </Box>
 
         <List sx={{ display: 'flex', alignItems: 'center' }}>
           {midLinks.map(({ title, path }) => (
-            <Button
-              component={NavLink}
-              to={path}
-              key={path}
-              sx={navStyle}>
+            <Button component={NavLink} to={path} key={path} sx={navStyle}>
               {title.toUpperCase()}
             </Button>
           ))}
@@ -71,13 +65,13 @@ export default function Header({ darkmode, handleThemeChange }: Props) {
               ml: 2,
               transition: 'transform 0.3s ease',
               '&:hover': {
-                transform: 'scale(1.2)', // Cart grows on hover
+                transform: 'scale(1.2)',
               },
             }}
           >
             <Badge badgeContent='4' color="secondary" sx={{
               '& .MuiBadge-badge': {
-                animation: 'bounce 1.5s infinite', // Subtle bounce animation for the badge
+                animation: 'bounce 1.5s infinite',
                 '@keyframes bounce': {
                   '0%, 100%': { transform: 'translateY(0)' },
                   '50%': { transform: 'translateY(-5px)' },
@@ -90,11 +84,7 @@ export default function Header({ darkmode, handleThemeChange }: Props) {
 
           <List sx={{ display: 'flex' }}>
             {rightLinks.map(({ title, path }) => (
-              <Button
-                component={NavLink}
-                to={path}
-                key={path}
-                sx={navStyle}>
+              <Button component={NavLink} to={path} key={path} sx={navStyle}>
                 {title.toUpperCase()}
               </Button>
             ))}
@@ -102,5 +92,5 @@ export default function Header({ darkmode, handleThemeChange }: Props) {
         </Box>
       </Toolbar>
     </AppBar>
-  )
+  );
 }
